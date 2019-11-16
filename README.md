@@ -8,7 +8,7 @@ docker container run --network consumer-producer --name producer -p 8088:8088 pr
 docker container run --network consumer-producer --name consumer -p 8087:8087 consumer &
 
 
-#some useful commands
+# some useful commands
 docker ps -a
 docker container stop consumer
 docker rm consumer
