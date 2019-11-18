@@ -39,6 +39,21 @@ public class Consumer {
 		return "Hi this is default docker consumer application";
 	}
 
+@GetMapping("docker/users")
+	public String all() {
+		String baseUrl = "http://producer:8088/docker/users";
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<String> response = null;
+		try {
+			response = restTemplate.exchange(baseUrl, HttpMethod.GET, getHeaders(), String.class);
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		System.out.println(response.getBody());
+
+		return TAG + " :  " + response.getBody().toString();
+	}
+
 	private static HttpEntity<?> getHeaders() throws IOException {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
